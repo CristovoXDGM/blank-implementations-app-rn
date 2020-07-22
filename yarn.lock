@@ -1633,6 +1633,11 @@ ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+android@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/android/-/android-0.0.8.tgz#a5b03de920d7437a34ccecee5ee127ef1e4495a9"
+  integrity sha1-pbA96SDXQ3o0zOzuXuEn7x5Elak=
+
 anser@^1.4.9:
   version "1.4.9"
   resolved "https://registry.yarnpkg.com/anser/-/anser-1.4.9.tgz#1f85423a5dcf8da4631a341665ff675b96845760"
@@ -3783,6 +3788,11 @@ invert-kv@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
+
+ios@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/ios/-/ios-0.0.1.tgz#4c6f774d8b0c2e9bb53c3411a6cdf00ac51dd92d"
+  integrity sha1-TG93TYsMLpu1PDQRps3wCsUd2S0=
 
 ip-regex@^2.1.0:
   version "2.1.0"

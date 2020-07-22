@@ -1,11 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button, Modal } from 'react-native';
+import Entrar from './src/Entrar';
 
 export default function App() {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const entrar = () => {
+    setModalVisible(true)
+  }
+  const sair = (visible) => {
+    setModalVisible(visible);
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+
+      <Button title="Entrar" onPress={entrar} />
+
+      <Modal transparent={true} animationType={"slide"} visible={modalVisible}  >
+        <View style={{ margin: 15, flex: 1, alignItems: 'center', justifyContent: "center" }}>
+          <Entrar fechar={() => sair(false)} />
+
+        </View>
+
+      </Modal>
+
       <StatusBar style="auto" />
     </View>
   );
