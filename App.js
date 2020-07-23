@@ -1,31 +1,69 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Button, Modal, TextInput, Keyboard, Alert, AsyncStorage } from 'react-native';
 import Entrar from './src/Entrar';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function App() {
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [input, setInput] = useState(" ");
+  const [nome, setNome] = useState(" ")
 
-  const entrar = () => {
-    setModalVisible(true)
+
+  async function getData() {
+    await AsyncStorage.getItem('nome').then((value) => {
+      setNome(value);
+
+    });
+
+
   }
-  const sair = (visible) => {
-    setModalVisible(visible);
+  async function save() {
+    await AsyncStorage.setItem('nome', nome);
+  }
+  useEffect(() => {
+    getData();
+  }, [])
+
+  useEffect(() => {
+
+    save();
+
+  }, [nome])
+
+
+
+
+  const gravarNome = () => {
+    setNome(input);
+
+    Keyboard.dismiss();
   }
 
   return (
     <View style={styles.container}>
 
-      <Button title="Entrar" onPress={entrar} />
 
-      <Modal transparent={true} animationType={"slide"} visible={modalVisible}  >
-        <View style={{ margin: 15, flex: 1, alignItems: 'center', justifyContent: "center" }}>
-          <Entrar fechar={() => sair(false)} />
+      <View style={styles.viewInput}>
+        <TextInput
+          underlineColorAndroid="transparent"
+          style={styles.input}
+          value={input}
+          onChangeText={(text) => setInput(text)}
+        ></TextInput>
 
-        </View>
+        <TouchableOpacity onPress={gravarNome}>
+          <Text style={styles.botao}>
+            +
+          </Text>
+        </TouchableOpacity>
+      </View>
 
-      </Modal>
+      <Text style={styles
+        .nomeText} >{nome}</Text>
+
+
+
 
       <StatusBar style="auto" />
     </View>
@@ -39,4 +77,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    width: "50%",
+    height: 40,
+    borderColor: "#000",
+    padding: 10,
+    borderWidth: 1
+  },
+  botao: {
+
+    padding: 10,
+    height: 40,
+    fontSize: 15,
+    color: "#fff",
+    backgroundColor: "#000",
+    marginLeft: 5
+  },
+  viewInput: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  nomeText: {
+    margin: 20,
+    fontSize: 50
+  }
 });
