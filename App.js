@@ -1,42 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
-import { api } from './src/services/api';
-import { FlatList } from 'react-native-gesture-handler';
-import Filmes from './src/Filmes';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, View, Text, Animated } from 'react-native';
+
+
 
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [filmes, setFilmes] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await api.get('r-api/?api=filmes');
-      setFilmes(result.data);
-      setLoading(false);
-    }
-    fetchData();
 
-    console.log(filmes);
+  const [larguraAnimada, setLarguraAnimada] = useState(new Animated.Value(150));
+  const larAnimada = useRef(new Animated.Value(150)).current;
+
+
+  useEffect(() => {
+    Animated.timing(larAnimada, {
+      toValue: 300,
+      duration: 2000,
+
+
+    }).start();
   }, [])
 
-  if (loading) {
-    return (
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }} >
-        <ActivityIndicator color="#09af" size={40} />
-      </View>
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        <FlatList
-          data={filmes}
-          keyExtractor={item => item.id.toString()}
-          renderItem={(item) => <Filmes prop={item} />} />
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
+
+  return (
+    <View style={styles.container}>
+
+      <Animated.View style={{ height: 50, width: larAnimada, backgroundColor: "#4169e1", justifyContent: "center" }}>
+        <Text
+          style={{
+            fontSize: 22,
+            color: "#fff",
+            textAlign: "center"
+          }} >
+          Carregando...
+          </Text>
+      </Animated.View>
+
+      <StatusBar style="auto" />
+    </View>
+  );
+
 }
 
 const styles = StyleSheet.create({
