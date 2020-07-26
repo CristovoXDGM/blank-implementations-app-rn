@@ -12,12 +12,24 @@ export default function App() {
 
 
   useEffect(() => {
-    Animated.timing(larAnimada, {
-      toValue: 300,
-      duration: 2000,
 
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(
+          larAnimada, {
+          toValue: 200,
+          duration: 200
+        }
+        ),
+        Animated.timing(
+          larAnimada, {
+          toValue: 200,
+          duration: 150
+        }
+        )
+      ])
+    ).start();
 
-    }).start();
   }, [])
 
 
