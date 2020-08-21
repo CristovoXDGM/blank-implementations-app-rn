@@ -4,9 +4,14 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Sobre({ route }) {
 
-    const navigation = useNavigation();
+    const { navigate, setOptions } = useNavigation();
+
+    setOptions({
+        title: `Sobre ${route.params?.title}`
+    });
+
     function irPara() {
-        navigation.navigate('Home')
+        navigate('Home')
     }
 
 

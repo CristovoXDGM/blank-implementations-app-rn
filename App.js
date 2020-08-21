@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import Home from './src/Pages/Home';
 import Sobre from "./src/Pages/Sobre";
+import Contato from "./src/Pages/Contato";
 
 const Stack = createStackNavigator();
 
@@ -13,10 +14,12 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Sobre" component={Sobre} options={{ headerLeft: "", headerShown: false }} />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Sobre" component={Sobre} />
+        <Stack.Screen name="Contato" component={Contato} />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 
 }
